@@ -1,0 +1,1113 @@
+{
+	"info": {
+		"_postman_id": "a53e2e3b-7ffd-4de5-b9c4-c9f769a4f13f",
+		"name": "TaskTrecker",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Registration",
+			"item": [
+				{
+					"name": "Happy path",
+					"item": [
+						{
+							"name": "Registration",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "74952e02-1782-4b6d-ad71-5a71c219459a",
+										"exec": [
+											"pm.test(\"Status code is 201\", function () {",
+											"    pm.response.to.have.status(201);",
+											"});",
+											"",
+											"  pm.test(\"Status code name has string\", function () {",
+											"        pm.response.to.have.status(\"Created\");",
+											"    });",
+											"    ",
+											"",
+											"pm.test(\"User's role equals: ROLE_USER\", function () {",
+											"    var jsonData = pm.response.json();",
+											"   pm.expect(jsonData.role).to.eql(\"ROLE_USER\");",
+											"});",
+											"",
+											"",
+											"  ",
+											"",
+											" "
+										],
+										"type": "text/javascript",
+										"packages": {},
+										"requests": {}
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "d1f14ac1-470f-49d9-8452-3a33ff64dc84",
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {},
+										"requests": {}
+									}
+								}
+							],
+							"id": "f55aff40-e3f5-4832-bdfa-0fff86cfb97d",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"email\": \"{{email}}\", \n  \"password\": \"{{password}}\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{BaseUrl}}/api/v1/users/register"
+							},
+							"response": []
+						},
+						{
+							"name": "Confirmaiton of Registration",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "74952e02-1782-4b6d-ad71-5a71c219459a",
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {},
+										"requests": {}
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "d1f14ac1-470f-49d9-8452-3a33ff64dc84",
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {},
+										"requests": {}
+									}
+								}
+							],
+							"id": "828b7b2a-892c-4910-a008-71c1eba47efa",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{BaseUrl}}/api/v1/users/confirm/{{code}}"
+							},
+							"response": []
+						}
+					],
+					"id": "c8bc1825-8d24-43f5-aa11-afeaaf34e40d"
+				},
+				{
+					"name": "Negative",
+					"item": [
+						{
+							"name": "Registration with invalid email",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "1bd06eec-6aee-4f56-9190-97bb0b4c96f7",
+										"exec": [
+											"pm.test(\"Status code is 400\", function () {",
+											"    pm.response.to.have.status(400);",
+											"});",
+											"",
+											"var jsonData = pm.response.json();",
+											"pm.test(\"Registration with invalid email\", function () {",
+											"    pm.expect(jsonData.errors[0].messages[0]).to.eql(\"must be a well-formed email address\");",
+											"});",
+											"",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {},
+										"requests": {}
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "a2d020b0-bb81-426e-b9ae-bd6066d74195",
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {},
+										"requests": {}
+									}
+								}
+							],
+							"id": "4c0367b9-f389-42c3-a240-bd8c10e9335a",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"email\": \"{{e-mail}}\", \n  \"password\": \"{{password}}\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{BaseUrl}}/api/v1/users/register"
+							},
+							"response": []
+						},
+						{
+							"name": "Registration with existing email",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "c636b573-a811-463c-bf8d-326cdbf2bcec",
+										"exec": [
+											"pm.test(\"Status code is 409\", function () {",
+											"    pm.response.to.have.status(409);",
+											"});",
+											"",
+											"pm.test(\"Registration with existing email\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData.message).to.eql(\"User already exists\");",
+											"});",
+											"",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {},
+										"requests": {}
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "30531b31-52b4-4dcf-a686-4a35cfac5738",
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {},
+										"requests": {}
+									}
+								}
+							],
+							"id": "c5089709-74b8-4fc8-9088-74247f331128",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"email\": \"levina.av@gmail.com\", \n  \"password\": \"AJ7#uPQ9!aB@r5X$wT\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{BaseUrl}}/api/v1/users/register"
+							},
+							"response": []
+						},
+						{
+							"name": "Registration with empty  email",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "ce8f53a4-eff5-45f7-a7f0-07dea08b3ad0",
+										"exec": [
+											"pm.test(\"Unable to create account w/out password\", function () {",
+											"    pm.response.to.have.status(400);",
+											"});",
+											"",
+											"var jsonData = pm.response.json();",
+											"pm.test(\"Registration with invalid email\", function () {",
+											"    pm.expect(jsonData.errors[0].messages[0]).to.include(\"must be a well-formed email address\",",
+											"                \"Email must not be blank\");",
+											"});",
+											"",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {},
+										"requests": {}
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "2f0527b8-17f4-4e2c-bd1c-6022efe125ac",
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {},
+										"requests": {}
+									}
+								}
+							],
+							"id": "e5709212-1a6d-4f1f-bafb-ade5b9883ecc",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"email\": \"\", \n  \"password\": \"AJ7#uPQ9!aB@r5X$wT\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{BaseUrl}}/api/v1/users/register"
+							},
+							"response": []
+						},
+						{
+							"name": "Registration with empty password",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "ce8f53a4-eff5-45f7-a7f0-07dea08b3ad0",
+										"exec": [
+											"pm.test(\"Status code is 400\", function () {",
+											"    pm.response.to.have.status(400);",
+											"});",
+											"",
+											"var jsonData = pm.response.json();",
+											"pm.test(\"Registration without password\", function () {",
+											"    pm.expect(jsonData.errors[0].messages[0]).to.include(\"Password must not be blank\");",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {},
+										"requests": {}
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "2f0527b8-17f4-4e2c-bd1c-6022efe125ac",
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {},
+										"requests": {}
+									}
+								}
+							],
+							"id": "2ef40339-4ba5-4069-ac15-2ddeac406e21",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"email\": \"test123API@example.com\", \n  \"password\": \"\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{BaseUrl}}/api/v1/users/register"
+							},
+							"response": []
+						},
+						{
+							"name": "Confirmaiton code not found",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "74952e02-1782-4b6d-ad71-5a71c219459a",
+										"exec": [
+											"pm.test(\"Status code is 400\", function () {",
+											"    pm.response.to.have.status(400);",
+											"});",
+											"",
+											"",
+											"pm.test(\"Confirmation code not found or expired\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData.message).to.eql(\"Confirmation Code not found\");",
+											"});",
+											"",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {},
+										"requests": {}
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "d1f14ac1-470f-49d9-8452-3a33ff64dc84",
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {},
+										"requests": {}
+									}
+								}
+							],
+							"id": "35c3f7ee-bff1-47fb-9e61-b5d57c4e1dde",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{BaseUrl}}/api/v1/users/confirm/{{code}}"
+							},
+							"response": []
+						}
+					],
+					"id": "74a826ab-3ea2-47ee-bdb9-01dc3b1272eb"
+				}
+			],
+			"id": "9142272f-f0f1-403e-8a4e-3f540ccf3265"
+		},
+		{
+			"name": "Login",
+			"item": [
+				{
+					"name": "Happy path",
+					"item": [
+						{
+							"name": "Login",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "ecfae800-6a32-437e-b4ba-7501c65a215c",
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											"",
+											"",
+											"pm.test(\"JWT cookie is present\", function () {",
+											"    // Получаем все заголовки Set-Cookie",
+											"    let cookies = pm.response.headers.filter(h => h.key.toLowerCase() === \"set-cookie\");",
+											"    ",
+											"    pm.expect(cookies.length).to.be.above(0);",
+											"",
+											"    // Ищем cookie, которая содержит JWT (например, называется access_token)",
+											"    let jwtCookie = cookies.find(c => c.value.startsWith(\"Access-Token=\"));",
+											"     let jwtCookie1 = cookies.find(c => c.value.startsWith(\"Refresh-Token=\"));",
+											"",
+											"    pm.expect(jwtCookie, \"JWT cookie should be set\").to.not.be.undefined;",
+											"    pm.expect(jwtCookie1, \"JWT cookie should be set\").to.not.be.undefined;",
+											"",
+											"    // Дополнительно: проверим, что в cookie есть флаг HttpOnly",
+											"    pm.expect(jwtCookie.value.toLowerCase()).to.include(\"httponly\");",
+											"});",
+											"",
+											"var jsonData = pm.response.json();",
+											"pm.environment.set(\"refreshToken\", jsonData.refreshToken);",
+											"",
+											"var jsonData = pm.response.json();",
+											"pm.environment.set(\"accessToken\", jsonData.accessToken);",
+											"",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {},
+										"requests": {}
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "6e26dcdd-1adb-47c3-b4b1-ac34ed3b1912",
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {},
+										"requests": {}
+									}
+								}
+							],
+							"id": "9b4a385c-249f-45e4-8f09-ca0ec356ee91",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"email\": \"{{email}}\", \n  \"password\": \"{{password}}\"\n}\n\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{BaseUrl}}/api/v1/auth/login"
+							},
+							"response": []
+						}
+					],
+					"id": "62a4fc19-7f27-4f50-9223-16a357a83e57"
+				},
+				{
+					"name": "Negative",
+					"item": [
+						{
+							"name": "Login with non existing account",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "3ccec263-5ce8-44d0-bf7d-3f500c8b3bd6",
+										"exec": [
+											"pm.test(\"Login with non existing account\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData.message).to.eql(\"User not found: test123@mail.com\");",
+											"});",
+											"",
+											"pm.test(\"Status code is 401\", function () {",
+											"    pm.response.to.have.status(401);",
+											"});",
+											"",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {},
+										"requests": {}
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "71ed82e8-6678-4980-9da6-31d9dcfe1f56",
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {},
+										"requests": {}
+									}
+								}
+							],
+							"id": "52993a66-a270-4fc3-9e6e-c1ec2bdffb82",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"email\": \"test123@mail.com\", \n  \"password\": \"Qa12345API!\"\n}\n\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{BaseUrl}}/api/v1/auth/login"
+							},
+							"response": []
+						},
+						{
+							"name": "Login with empty email field",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "3ccec263-5ce8-44d0-bf7d-3f500c8b3bd6",
+										"exec": [
+											"pm.test(\"API message equals: must not be blank\", function () {",
+											"    var jsonData = pm.response.json();",
+											"   pm.expect(jsonData.errors[0].messages[0]).to.eql(\"must not be blank\");",
+											"});",
+											"",
+											"pm.test(\"Status code is 400\", function () {",
+											"    pm.response.to.have.status(400);",
+											"});",
+											"",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "71ed82e8-6678-4980-9da6-31d9dcfe1f56",
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"id": "93396ddb-6703-4e54-b839-0c3a7fbee9c0",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"email\": \"\", \n  \"password\": \"Qa12345API!\"\n}\n\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{BaseUrl}}/api/v1/auth/login"
+							},
+							"response": []
+						}
+					],
+					"id": "cff5d5a7-515f-492e-a51c-5bee124c1147"
+				}
+			],
+			"id": "eb684366-9b97-4570-ac5e-b81b446b9b9e"
+		},
+		{
+			"name": "Authorization",
+			"item": [
+				{
+					"name": "Happy path",
+					"item": [
+						{
+							"name": "Updating token",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "bed906b7-897b-4da1-9d7b-25299bf97794",
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											"",
+											"",
+											"",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {},
+										"requests": {}
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "d866ba16-50af-43f3-a0f5-a838df92de1d",
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {},
+										"requests": {}
+									}
+								}
+							],
+							"id": "ea6d05b6-6057-424b-8b71-e03cf5186939",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"refreshToken\": \"{{refreshToken}}\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{BaseUrl}}/api/v1/auth/refresh-token"
+							},
+							"response": []
+						},
+						{
+							"name": "Logout",
+							"id": "a64769aa-6610-4bf9-82ee-a24485a46c7c",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"email\": \"{{email}}\", \n  \"password\": \"{{password}}\"\n}\n\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{BaseUrl}}/api/v1/auth/logout"
+							},
+							"response": []
+						},
+						{
+							"name": "Role Admin",
+							"id": "b38d1eca-3073-4d1a-bc86-bc90c3825717",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Role User",
+							"id": "1f6ff819-1e92-4301-bd9d-35c68e40fcb6",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": []
+							},
+							"response": []
+						}
+					],
+					"id": "8396a25e-2e31-430b-b368-f7fbfcf460aa"
+				},
+				{
+					"name": "Negative",
+					"item": [
+						{
+							"name": "Updating token with invalid data",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "bed906b7-897b-4da1-9d7b-25299bf97794",
+										"exec": [
+											"pm.test(\"Status code is 401\", function () {",
+											"    pm.response.to.have.status(401);",
+											"});",
+											"",
+											"pm.test(\"Registration with existing email\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData.message).to.eql(\"Invalid refresh token\");",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {},
+										"requests": {}
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "d866ba16-50af-43f3-a0f5-a838df92de1d",
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {},
+										"requests": {}
+									}
+								}
+							],
+							"id": "80e2e779-c4db-44d6-ab0b-5085acdb2e78",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"refreshToken\": \"eyJhbGciOiJIUzI1NiJ9...0ADS106w\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{BaseUrl}}/api/v1/auth/refresh-token"
+							},
+							"response": []
+						}
+					],
+					"id": "acf112d6-4f02-405e-ad14-8d0c6ec33f5e"
+				}
+			],
+			"id": "665e4722-ed91-457e-b61a-7b5386ec4282"
+		},
+		{
+			"name": "Projects",
+			"item": [
+				{
+					"name": "Happy Path",
+					"item": [
+						{
+							"name": "create project",
+							"id": "4944a573-d4b4-44c7-8b92-1f96c9842b88",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"title\": \"New Website Development\",\n  \"description\": \"A Project to develop a new company website\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BaseUrl}}/api/v1/projects?Authorization={{refreshToken}}",
+									"host": [
+										"{{BaseUrl}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"projects"
+									],
+									"query": [
+										{
+											"key": "Authorization",
+											"value": "{{refreshToken}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get all projects",
+							"id": "97d722b3-a4fd-44b4-8ba1-3d16cdd8a365",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "authToken",
+										"type": "text"
+									}
+								],
+								"url": "{{BaseUrl}}/api/v1/projects"
+							},
+							"response": []
+						},
+						{
+							"name": "Get project by ID",
+							"id": "5cab3c28-9254-4288-9804-e9165a6a526f",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": "{{BaseUrl}}/api/v1/projects/{idProject}"
+							},
+							"response": []
+						},
+						{
+							"name": "Delete project by ID",
+							"id": "28d89200-eecd-4eb5-bc94-b9de8dffc111",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{BaseUrl}}/api/v1/projects/b1e9fab6-c787-4d35-8922-813c75e0aa22?Authorization={{refreshToken}}",
+									"host": [
+										"{{BaseUrl}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"projects",
+										"b1e9fab6-c787-4d35-8922-813c75e0aa22"
+									],
+									"query": [
+										{
+											"key": "Authorization",
+											"value": "{{refreshToken}}"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"id": "49b2ab26-63a0-4e90-a608-85e989498bda"
+				},
+				{
+					"name": "Negative",
+					"item": [
+						{
+							"name": "User can't delete other project",
+							"id": "b7d328cb-41ab-4c89-b6a5-2844169e2742",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": []
+							},
+							"response": []
+						}
+					],
+					"id": "ad7e2aea-874c-4094-b1df-a743cdf18e79"
+				}
+			],
+			"id": "4e63d32c-425e-4117-b7a0-b4cd0e912672"
+		},
+		{
+			"name": "Tasks",
+			"item": [
+				{
+					"name": "Create task",
+					"id": "dd4a4820-7679-4e4c-a8eb-3ae5b03b9bf1",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{BaseUrl}}/api/v1/tasks"
+					},
+					"response": []
+				},
+				{
+					"name": "Get task by ID",
+					"id": "d9f356a8-8138-481e-83d9-7f9968e7637e",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{BaseUrl}}/api/v1/tasks/{id}"
+					},
+					"response": []
+				},
+				{
+					"name": "Get task by ID Copy",
+					"id": "551d5415-f572-468e-bb92-51968822baa0",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{BaseUrl}}/api/v1/tasks/{id}"
+					},
+					"response": []
+				},
+				{
+					"name": "Get all tasks by projectId",
+					"id": "6d365869-2ced-4740-930e-3a655bb55243",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{BaseUrl}}/api/v1/tasks/project/{projectId}"
+					},
+					"response": []
+				}
+			],
+			"id": "c0effe9a-0db7-449e-9afc-e534018ffc17"
+		},
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "Get all users under Admin role",
+					"id": "52cf778d-61a6-4a3c-92d0-ec4c558f2559",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "",
+								"type": "text"
+							}
+						],
+						"url": "{{BaseUrl}}/api/v1/users/all"
+					},
+					"response": []
+				},
+				{
+					"name": "Get users profile",
+					"id": "d865d460-126c-4dd0-84f7-1b45e8d10f41",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{BaseUrl}}/api/v1/users/profile?Authorization={{refreshToken}}",
+							"host": [
+								"{{BaseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"users",
+								"profile"
+							],
+							"query": [
+								{
+									"key": "Authorization",
+									"value": "{{refreshToken}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Role user check",
+					"id": "173dfeab-880c-4ef6-9046-045024e68684",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				}
+			],
+			"id": "2ff6ef81-9bf7-46fa-af7d-aec09dc878e6"
+		}
+	]
+}
