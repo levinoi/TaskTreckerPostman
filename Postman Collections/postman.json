@@ -1002,6 +1002,44 @@
 					"name": "Negative",
 					"item": [
 						{
+							"name": "create project without title",
+							"id": "759bbdfb-b3df-46e8-90eb-873905cfb1a0",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"title\": \"\",\n  \"description\": \"kjnfvjdnv\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BaseUrl}}/api/v1/projects?Authorization={{refreshToken}}",
+									"host": [
+										"{{BaseUrl}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"projects"
+									],
+									"query": [
+										{
+											"key": "Authorization",
+											"value": "{{refreshToken}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
 							"name": "User can't delete other project",
 							"id": "b7d328cb-41ab-4c89-b6a5-2844169e2742",
 							"protocolProfileBehavior": {
