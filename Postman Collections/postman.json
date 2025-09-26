@@ -431,6 +431,82 @@
 					"name": "Happy path",
 					"item": [
 						{
+							"name": "Login with params",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "ecfae800-6a32-437e-b4ba-7501c65a215c",
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											"",
+											"",
+											"pm.test(\"JWT cookie is present\", function () {",
+											"    // Получаем все заголовки Set-Cookie",
+											"    let cookies = pm.response.headers.filter(h => h.key.toLowerCase() === \"set-cookie\");",
+											"    ",
+											"    pm.expect(cookies.length).to.be.above(0);",
+											"",
+											"    // Ищем cookie, которая содержит JWT (например, называется access_token)",
+											"    let jwtCookie = cookies.find(c => c.value.startsWith(\"Access-Token=\"));",
+											"     let jwtCookie1 = cookies.find(c => c.value.startsWith(\"Refresh-Token=\"));",
+											"",
+											"    pm.expect(jwtCookie, \"JWT cookie should be set\").to.not.be.undefined;",
+											"    pm.expect(jwtCookie1, \"JWT cookie should be set\").to.not.be.undefined;",
+											"",
+											"    // Дополнительно: проверим, что в cookie есть флаг HttpOnly",
+											"    pm.expect(jwtCookie.value.toLowerCase()).to.include(\"httponly\");",
+											"});",
+											"",
+											"var jsonData = pm.response.json();",
+											"pm.environment.set(\"refreshToken\", jsonData.refreshToken);",
+											"",
+											"var jsonData = pm.response.json();",
+											"pm.environment.set(\"accessToken\", jsonData.accessToken);",
+											"",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {},
+										"requests": {}
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "6e26dcdd-1adb-47c3-b4b1-ac34ed3b1912",
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {},
+										"requests": {}
+									}
+								}
+							],
+							"id": "ab44a8f6-c204-4464-a8d8-7f78a64123a5",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"email\": \"{{email}}\", \n  \"password\": \"{{password}}\"\n}\n\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{BaseUrl}}/api/v1/auth/login"
+							},
+							"response": []
+						},
+						{
 							"name": "Login",
 							"event": [
 								{
@@ -495,7 +571,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n  \"email\": \"{{email}}\", \n  \"password\": \"{{password}}\"\n}\n\n",
+									"raw": "{\n  \"email\": \"admin@example.com\", \n  \"password\": \"dev_TR_pass_007\"\n}\n\n",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -940,14 +1016,30 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "",
+							"raw": "{\n  \"title\": \"Implement repository layer\",\n  \"description\": \"Create JPA repositories for all entities\",\n  \"dueDate\": \"2025-09-27T15:00:00\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
 								}
 							}
 						},
-						"url": "{{BaseUrl}}/api/v1/tasks"
+						"url": {
+							"raw": "{{BaseUrl}}/api/v1/tasks?Authorization={{refreshToken}}",
+							"host": [
+								"{{BaseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"tasks"
+							],
+							"query": [
+								{
+									"key": "Authorization",
+									"value": "{{refreshToken}}"
+								}
+							]
+						}
 					},
 					"response": []
 				},
