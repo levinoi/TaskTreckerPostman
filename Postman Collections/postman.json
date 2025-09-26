@@ -912,7 +912,24 @@
 										}
 									}
 								},
-								"url": "{{BaseUrl}}/api/v1/projects"
+								"url": {
+									"raw": "{{BaseUrl}}/api/v1/projects?Authorization={{refreshToken}}",
+									"host": [
+										"{{BaseUrl}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"projects"
+									],
+									"query": [
+										{
+											"key": "Authorization",
+											"value": "{{refreshToken}}",
+											"type": "text"
+										}
+									]
+								}
 							},
 							"response": []
 						},
