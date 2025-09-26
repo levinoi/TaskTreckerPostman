@@ -1016,7 +1016,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"title\": \"Implement repository layer\",\n  \"description\": \"Create JPA repositories for all entities\",\n  \"dueDate\": \"2025-09-27T15:00:00\"\n}",
+							"raw": "{\n  \"title\": \"Implement repository layer\",\n  \"description\": \"Create JPA repositories for all entities\",\n  \"dueDate\": \"2025-09-27T15:00:00\"\n}\n",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1050,7 +1050,7 @@
 						"disableBodyPruning": true
 					},
 					"request": {
-						"method": "POST",
+						"method": "GET",
 						"header": [],
 						"body": {
 							"mode": "raw",
