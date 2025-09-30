@@ -1291,8 +1291,12 @@
 									"listen": "prerequest",
 									"script": {
 										"id": "49440826-1503-4bd1-90fc-e8bc563e93b5",
-										"exec": [],
-										"type": "text/javascript"
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {},
+										"requests": {}
 									}
 								}
 							],
@@ -1312,7 +1316,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"currentPassword\": \"{{newPassword}}\",\n    \"newPassword\":\"12м.        \",\n    \"confirmPassword\": \"12.    \"\n}",
+									"raw": "{\n    \"currentPassword\": \"AJ7#uPQ9!aB@r500\",\n    \"newPassword\":\"AJ7#uPQ9!aB@r500\",\n    \"confirmPassword\": \"AJ7#uPQ9!aB@r500\"\n}",
 									"options": {
 										"raw": {
 											"language": "json"
