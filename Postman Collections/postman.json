@@ -1312,7 +1312,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"currentPassword\": \"{{newPassword}}\",\n    \"newPassword\":\"12\",\n    \"confirmPassword\": \"12}\"\n}",
+									"raw": "{\n    \"currentPassword\": \"{{newPassword}}\",\n    \"newPassword\":\"12м.        \",\n    \"confirmPassword\": \"12.    \"\n}",
 									"options": {
 										"raw": {
 											"language": "json"
