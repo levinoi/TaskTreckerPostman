@@ -1259,6 +1259,42 @@
 							"response": []
 						},
 						{
+							"name": "Update users profile",
+							"id": "e56f5cbb-de84-412a-a82f-e972bb662a51",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{BaseUrl}}/api/v1/users/profile?Authorization={{refreshToken}}",
+									"host": [
+										"{{BaseUrl}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"users",
+										"profile"
+									],
+									"query": [
+										{
+											"key": "Authorization",
+											"value": "{{refreshToken}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
 							"name": "Change password",
 							"event": [
 								{
