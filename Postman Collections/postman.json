@@ -1262,7 +1262,7 @@
 						"disableBodyPruning": true
 					},
 					"request": {
-						"method": "GET",
+						"method": "POST",
 						"header": [
 							{
 								"key": "Authorization",
@@ -1270,24 +1270,16 @@
 								"type": "text"
 							}
 						],
-						"url": {
-							"raw": "{{BaseUrl}}/api/v1/users/profile?Authorization={{refreshToken}}",
-							"host": [
-								"{{BaseUrl}}"
-							],
-							"path": [
-								"api",
-								"v1",
-								"users",
-								"profile"
-							],
-							"query": [
-								{
-									"key": "Authorization",
-									"value": "{{refreshToken}}"
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"currentPassword\": {{password}},\n    \"newPassword\":\"{{newPassword}}\",\n    \"confirmPassword\": \"\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
 								}
-							]
-						}
+							}
+						},
+						"url": "{{BaseUrl}}/api/v1/users/profile/change-password"
 					},
 					"response": []
 				},
