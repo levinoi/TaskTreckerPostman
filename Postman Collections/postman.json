@@ -495,7 +495,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n  \"email\": \"{{email}}\", \n  \"password\": \"{{newPassword}}\"\n}\n\n",
+									"raw": "{\n  \"email\": \"{{email}}\", \n  \"password\": \"{{password}}\"\n}\n\n",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -1361,7 +1361,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"currentPassword\": \"AJ7#uPQ9!aB@r500\",\n    \"newPassword\":\"AJ7#uPQ9!aB@r500\",\n    \"confirmPassword\": \"AJ7#uPQ9!aB@r500\"\n}",
+									"raw": "{\n    \"currentPassword\": \"{{password}}\",\n    \"newPassword\":\"{{newPassword}}\",\n    \"confirmPassword\": \"{{newPassword}}\"\n}",
 									"options": {
 										"raw": {
 											"language": "json"
