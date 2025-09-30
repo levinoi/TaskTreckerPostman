@@ -495,7 +495,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n  \"email\": \"{{email}}\", \n  \"password\": \"{{password}}\"\n}\n\n",
+									"raw": "{\n  \"email\": \"{{email}}\", \n  \"password\": \"{{newPassword}}\"\n}\n\n",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -1260,6 +1260,42 @@
 						},
 						{
 							"name": "Change password",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "e17babe3-25ed-418a-a882-ed83787179f6",
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											"",
+											"  pm.test(\"Status code name has string\", function () {",
+											"        pm.response.to.have.status(\"Created\");",
+											"    });",
+											"    ",
+											"",
+											"pm.test(\"User's role equals: ROLE_USER\", function () {",
+											"    var jsonData = pm.response.json();",
+											"   pm.expect(jsonData.role).to.eql(\"ROLE_USER\");",
+											"});",
+											"",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {},
+										"requests": {}
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "49440826-1503-4bd1-90fc-e8bc563e93b5",
+										"exec": [],
+										"type": "text/javascript"
+									}
+								}
+							],
 							"id": "c70ff8a1-1f24-4054-a1c3-3a99ff66ae85",
 							"protocolProfileBehavior": {
 								"disableBodyPruning": true
@@ -1276,7 +1312,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"currentPassword\": \"{{password}}\",\n    \"newPassword\":\"{{newPassword}}\",\n    \"confirmPassword\": \"{{newPassword}}\"\n}",
+									"raw": "{\n    \"currentPassword\": \"{{newPassword}}\",\n    \"newPassword\":\"{{newPassword}}\",\n    \"confirmPassword\": \"{{newPassword}}\"\n}",
 									"options": {
 										"raw": {
 											"language": "json"
