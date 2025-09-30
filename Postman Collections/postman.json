@@ -1266,13 +1266,13 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "",
+								"value": "{{refreshToken}}",
 								"type": "text"
 							}
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"currentPassword\": {{password}},\n    \"newPassword\":\"{{newPassword}}\",\n    \"confirmPassword\": \"\"\n}",
+							"raw": "{\n    \"currentPassword\": {{password}},\n    \"newPassword\":\"{{newPassword}}\",\n    \"confirmPassword\": \"{{newPassword}}\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
