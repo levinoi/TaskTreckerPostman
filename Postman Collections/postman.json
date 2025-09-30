@@ -1256,6 +1256,42 @@
 					"response": []
 				},
 				{
+					"name": "Change password",
+					"id": "c70ff8a1-1f24-4054-a1c3-3a99ff66ae85",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{BaseUrl}}/api/v1/users/profile?Authorization={{refreshToken}}",
+							"host": [
+								"{{BaseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"users",
+								"profile"
+							],
+							"query": [
+								{
+									"key": "Authorization",
+									"value": "{{refreshToken}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "Role user check",
 					"id": "173dfeab-880c-4ef6-9046-045024e68684",
 					"protocolProfileBehavior": {
