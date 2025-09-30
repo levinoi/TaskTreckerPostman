@@ -1267,19 +1267,38 @@
 							{
 								"key": "Authorization",
 								"value": "{{refreshToken}}",
-								"type": "text"
+								"type": "text",
+								"disabled": true
 							}
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"currentPassword\": {{password}},\n    \"newPassword\":\"{{newPassword}}\",\n    \"confirmPassword\": \"{{newPassword}}\"\n}",
+							"raw": "{\n    \"currentPassword\": \"{{password}}\",\n    \"newPassword\":\"{{newPassword}}\",\n    \"confirmPassword\": \"{{newPassword}}\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
 								}
 							}
 						},
-						"url": "{{BaseUrl}}/api/v1/users/profile/change-password"
+						"url": {
+							"raw": "{{BaseUrl}}/api/v1/users/profile/change-password?Authorization={{refreshToken}}",
+							"host": [
+								"{{BaseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"users",
+								"profile",
+								"change-password"
+							],
+							"query": [
+								{
+									"key": "Authorization",
+									"value": "{{refreshToken}}"
+								}
+							]
+						}
 					},
 					"response": []
 				},
