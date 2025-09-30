@@ -1266,18 +1266,18 @@
 									"script": {
 										"id": "e17babe3-25ed-418a-a882-ed83787179f6",
 										"exec": [
-											"pm.test(\"Status code is 200\", function () {",
+											"pm.test(\"API: Status code is 200\", function () {",
 											"    pm.response.to.have.status(200);",
 											"});",
 											"",
-											"  pm.test(\"Status code name has string\", function () {",
-											"        pm.response.to.have.status(\"Created\");",
+											"  pm.test(\"API: Status code name is OK\", function () {",
+											"        pm.response.to.have.status(\"OK\");",
 											"    });",
 											"    ",
 											"",
-											"pm.test(\"User's role equals: ROLE_USER\", function () {",
+											"pm.test(\"API Message: Password has been successfully changed \", function () {",
 											"    var jsonData = pm.response.json();",
-											"   pm.expect(jsonData.role).to.eql(\"ROLE_USER\");",
+											"   pm.expect(jsonData.message).to.eql(\"Password has been successfully changed\");",
 											"});",
 											"",
 											""
