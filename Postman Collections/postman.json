@@ -1279,7 +1279,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "",
+									"raw": "{\n  \"displayName\": \"Mila\",\n  \"position\": \"Fullstack QA\",\n  \"department\": \"R&D Department\",\n  \"avatarUrl\": \"https://cdn.example.com/avatars/gogi.jpg\",\n  \"bio\": \"I like Java & Spring\"\n}",
 									"options": {
 										"raw": {
 											"language": "json"
