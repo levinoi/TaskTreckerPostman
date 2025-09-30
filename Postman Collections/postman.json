@@ -1201,118 +1201,129 @@
 			"name": "Users",
 			"item": [
 				{
-					"name": "Get all users under Admin role",
-					"id": "52cf778d-61a6-4a3c-92d0-ec4c558f2559",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "",
-								"type": "text"
-							}
-						],
-						"url": "{{BaseUrl}}/api/v1/users/all"
-					},
-					"response": []
-				},
-				{
-					"name": "Get users profile",
-					"id": "d865d460-126c-4dd0-84f7-1b45e8d10f41",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "",
-								"type": "text"
-							}
-						],
-						"url": {
-							"raw": "{{BaseUrl}}/api/v1/users/profile?Authorization={{refreshToken}}",
-							"host": [
-								"{{BaseUrl}}"
-							],
-							"path": [
-								"api",
-								"v1",
-								"users",
-								"profile"
-							],
-							"query": [
-								{
-									"key": "Authorization",
-									"value": "{{refreshToken}}"
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Change password",
-					"id": "c70ff8a1-1f24-4054-a1c3-3a99ff66ae85",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "{{refreshToken}}",
-								"type": "text",
-								"disabled": true
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"currentPassword\": \"{{password}}\",\n    \"newPassword\":\"{{newPassword}}\",\n    \"confirmPassword\": \"{{newPassword}}\"\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
+					"name": "Happy path",
+					"item": [
+						{
+							"name": "Get all users under Admin role",
+							"id": "52cf778d-61a6-4a3c-92d0-ec4c558f2559",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "",
+										"type": "text"
+									}
+								],
+								"url": "{{BaseUrl}}/api/v1/users/all"
+							},
+							"response": []
 						},
-						"url": {
-							"raw": "{{BaseUrl}}/api/v1/users/profile/change-password?Authorization={{refreshToken}}",
-							"host": [
-								"{{BaseUrl}}"
-							],
-							"path": [
-								"api",
-								"v1",
-								"users",
-								"profile",
-								"change-password"
-							],
-							"query": [
-								{
-									"key": "Authorization",
-									"value": "{{refreshToken}}"
+						{
+							"name": "Get users profile",
+							"id": "d865d460-126c-4dd0-84f7-1b45e8d10f41",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{BaseUrl}}/api/v1/users/profile?Authorization={{refreshToken}}",
+									"host": [
+										"{{BaseUrl}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"users",
+										"profile"
+									],
+									"query": [
+										{
+											"key": "Authorization",
+											"value": "{{refreshToken}}"
+										}
+									]
 								}
-							]
+							},
+							"response": []
+						},
+						{
+							"name": "Change password",
+							"id": "c70ff8a1-1f24-4054-a1c3-3a99ff66ae85",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{refreshToken}}",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"currentPassword\": \"{{password}}\",\n    \"newPassword\":\"{{newPassword}}\",\n    \"confirmPassword\": \"{{newPassword}}\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BaseUrl}}/api/v1/users/profile/change-password?Authorization={{refreshToken}}",
+									"host": [
+										"{{BaseUrl}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"users",
+										"profile",
+										"change-password"
+									],
+									"query": [
+										{
+											"key": "Authorization",
+											"value": "{{refreshToken}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Role user check",
+							"id": "173dfeab-880c-4ef6-9046-045024e68684",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": []
+							},
+							"response": []
 						}
-					},
-					"response": []
+					],
+					"id": "a6200b54-5bc1-485c-a54c-afd70e110b36"
 				},
 				{
-					"name": "Role user check",
-					"id": "173dfeab-880c-4ef6-9046-045024e68684",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"method": "GET",
-						"header": []
-					},
-					"response": []
+					"name": "Negative",
+					"item": [],
+					"id": "cc6a7530-c490-44e3-b25c-e4bd8b1c365e"
 				}
 			],
 			"id": "2ff6ef81-9bf7-46fa-af7d-aec09dc878e6"
