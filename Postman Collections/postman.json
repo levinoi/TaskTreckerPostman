@@ -932,40 +932,18 @@
 								"disableBodyPruning": true
 							},
 							"request": {
-								"auth": {
-									"type": "bearer",
-									"bearer": {
-										"token": "{{refreshToken}}"
-									}
-								},
 								"method": "POST",
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n  \"title\": \"Prj for task3\",\n  \"description\": \"testing \"\n}\n\n",
+									"raw": "{\n  \"title\": \"Prj for task4\",\n  \"description\": \"testing \"\n}\n\n",
 									"options": {
 										"raw": {
 											"language": "json"
 										}
 									}
 								},
-								"url": {
-									"raw": "{{BaseUrl}}/api/v1/projects?Authorization={{refreshToken}}",
-									"host": [
-										"{{BaseUrl}}"
-									],
-									"path": [
-										"api",
-										"v1",
-										"projects"
-									],
-									"query": [
-										{
-											"key": "Authorization",
-											"value": "{{refreshToken}}"
-										}
-									]
-								}
+								"url": "{{BaseUrl}}/api/v1/projects"
 							},
 							"response": []
 						},
