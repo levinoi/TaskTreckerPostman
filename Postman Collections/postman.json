@@ -936,7 +936,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n  \"title\": \"Prj for task\",\n  \"description\": \"testing \"\n}",
+									"raw": "{\n  \"title\": \"Prj for task\",\n  \"description\": \"testing \"\n}\n\n",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -944,7 +944,7 @@
 									}
 								},
 								"url": {
-									"raw": "{{BaseUrl}}/api/v1/projects?Authorization={{refreshToken}}",
+									"raw": "{{BaseUrl}}/api/v1/projects",
 									"host": [
 										"{{BaseUrl}}"
 									],
@@ -956,7 +956,8 @@
 									"query": [
 										{
 											"key": "Authorization",
-											"value": "{{refreshToken}}"
+											"value": "{{refreshToken}}",
+											"disabled": true
 										}
 									]
 								}
