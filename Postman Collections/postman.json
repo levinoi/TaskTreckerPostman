@@ -1232,10 +1232,6 @@
 								"disableBodyPruning": true
 							},
 							"request": {
-								"auth": {
-									"type": "bearer",
-									"bearer": {}
-								},
 								"method": "PUT",
 								"header": [
 									{
@@ -1246,31 +1242,14 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n  \"displayName\": \"Mila\",\n  \"position\": \"Fullstack QA\",\n  \"department\": \"R&D Department\",\n  \"avatarUrl\": \"https://cdn.example.com/avatars/gogi.jpg\",\n  \"bio\": \"I like Java & Spring\"\n}",
+									"raw": "{\n  \"displayName\": \"\",\n  \"position\": \"\",\n  \"department\": \"\",\n  \"avatarUrl\": \"!\",\n  \"bio\": \"!§$%&/()=\"\n}",
 									"options": {
 										"raw": {
 											"language": "json"
 										}
 									}
 								},
-								"url": {
-									"raw": "{{BaseUrl}}/api/v1/users/profile?Authorization={{refreshToken}}",
-									"host": [
-										"{{BaseUrl}}"
-									],
-									"path": [
-										"api",
-										"v1",
-										"users",
-										"profile"
-									],
-									"query": [
-										{
-											"key": "Authorization",
-											"value": "{{refreshToken}}"
-										}
-									]
-								}
+								"url": "{{BaseUrl}}/api/v1/users/profile"
 							},
 							"response": []
 						},
