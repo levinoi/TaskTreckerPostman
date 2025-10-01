@@ -988,24 +988,7 @@
 							"request": {
 								"method": "DELETE",
 								"header": [],
-								"url": {
-									"raw": "{{BaseUrl}}/api/v1/projects/4d5df1ff-5fd0-4043-8dc6-58d0ee8c4689?Authorization={{refreshToken}}",
-									"host": [
-										"{{BaseUrl}}"
-									],
-									"path": [
-										"api",
-										"v1",
-										"projects",
-										"4d5df1ff-5fd0-4043-8dc6-58d0ee8c4689"
-									],
-									"query": [
-										{
-											"key": "Authorization",
-											"value": "{{refreshToken}}"
-										}
-									]
-								}
+								"url": "{{BaseUrl}}/api/v1/projects/4d5df1ff-5fd0-4043-8dc6-58d0ee8c4689"
 							},
 							"response": []
 						}
