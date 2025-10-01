@@ -65,7 +65,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n  \"email\": \"{{email}}\", \n  \"password\": \"{{password}}\"\n}",
+									"raw": "{\n  \"email\": \"levi.alya+1@gmail.com\", \n  \"password\": \"dev_TR_pass_007\"\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -571,7 +571,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n  \"email\": \"admin@example.com\", \n  \"password\": \"dev_TR_pass_007\"\n}\n\n",
+									"raw": "{\n  \"email\": \"levi.alya+1@gmail.com\", \n  \"password\": \"dev_TR_pass_007\"\n}\n\n",
 									"options": {
 										"raw": {
 											"language": "json"
