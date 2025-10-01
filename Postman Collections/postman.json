@@ -950,7 +950,7 @@
 									}
 								},
 								"url": {
-									"raw": "{{BaseUrl}}/api/v1/projects",
+									"raw": "{{BaseUrl}}/api/v1/projects?Authorization={{refreshToken}}",
 									"host": [
 										"{{BaseUrl}}"
 									],
@@ -962,8 +962,7 @@
 									"query": [
 										{
 											"key": "Authorization",
-											"value": "{{refreshToken}}",
-											"disabled": true
+											"value": "{{refreshToken}}"
 										}
 									]
 								}
