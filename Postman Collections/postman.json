@@ -936,7 +936,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n  \"title\": \"project 1 \",\n  \"description\": \"testing \"\n}",
+									"raw": "{\n  \"title\": \"Prj for task\",\n  \"description\": \"testing \"\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -1101,7 +1101,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"id\":\"c848919a-f3ae-46e7-b7f3-bb16408066c1\",\n  \"title\": \"test levi task\",\n  \"description\": \"testing... \",\n  \"dueDate\": \"2025-10-01T15:00:00\"\n}\n",
+							"raw": "{\n\"title\": \"Levi task1\",\n\"description\": \"projects tests\",\n\"project\": {\n    \"id\": \"8465f716-01be-4ab6-9cdb-6c674d49dedc2\"\n},\n\"dueDate\": \"2025-10-01T15:00:00\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
